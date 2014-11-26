@@ -1,8 +1,4 @@
 clc;
-%% ToDo
-% 1.) Confirm OFDM modulation for HT-SIG data
-% 2.) Determine error in interleaver
-
 %% References
 % [1] 802.11a http://www.wardriving.ch/hpneu/info/doku/802.11a-1999.pdf
 
@@ -38,12 +34,11 @@ SIGNAL_Modulated = 2*SIGNAL_Interleaved-1;
 SIGNAL_OFDMModulated = step(hDataMod,SIGNAL_Modulated.',Pilots);
 %clc;fftshift(fft(SIGNAL_OFDMModulated(17:end))) % check table G.10
 
+SCRAMBLER_INITIALIZATION = zeros(1,7);
+RESERVED_SERVICE = [0 1 0 1 0 1 0]; % Reserved
+SERVICE = [SCRAMBLER_INITIALIZATION, RESERVED_SERVICE];
 
-% SCRAMBLER_INITIALIZATION = zeros(1,7);
-% RESERVED_SERVICE = [0 1 0 1 0 1 0]; % Reserved
-% SERVICE = [SCRAMBLER_INITIALIZATION, RESERVED_SERVICE];
-% 
-% HeaderPLCP = [SIGNAL, SERVICE];
+HeaderPLCP = [SIGNAL, SERVICE];
 % Problems, is reserve bit used in SIGNAL?
 
 
@@ -86,11 +81,9 @@ HT_SIG2_Encoded = step(hConvEnc,HT_SIG2.').';
 HT_SIG1_Interleaved = Interleave(HT_SIG1_Encoded);
 HT_SIG2_Interleaved = Interleave(HT_SIG2_Encoded);
        
-% Modulate (RECONFIRM)
-HT_SIG1_Modulated = 1i*(2*HT_SIG1_Interleaved-1);
-HT_SIG1_OFDMModulated = step(hDataMod,HT_SIG1_Modulated.',Pilots);       
-HT_SIG2_Modulated = 1i*(2*HT_SIG2_Interleaved-1);
-HT_SIG2_OFDMModulated = step(hDataMod,HT_SIG2_Modulated.',Pilots);       
+% Modulate
+HT_SIG1_Modulated = 2*HT_SIG1_Interleaved-1;
+HT_SIG1_OFDMModulated = step(hDataMod,SIGNAL_Modulated.',Pilots);       
        
        
        
