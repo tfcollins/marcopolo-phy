@@ -1,4 +1,4 @@
 marcopolo-phy
 =============
 
-Marco Polo alternative approach to from purely the physical layer
+Marco Polo alternative approach from purely the physical layer
