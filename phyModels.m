@@ -4,7 +4,7 @@ clc;
 % 2.) Determine error in interleaver
 
 %% References
-% [1] 802.11a http://www.wardriving.ch/hpneu/info/doku/802.11a-1999.pdf
+% [1] "802.11a Standard" http://www.wardriving.ch/hpneu/info/doku/802.11a-1999.pdf
 
 %% Legacy frame (Non-HT PPDU)
 % Preamble

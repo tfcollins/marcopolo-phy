@@ -20,9 +20,9 @@ end
 
 crc = ~M8(end-7:end);
 
-desired = [1 0 1 0 1 0 0 0];
-
-[desired.' crc.']
+% desired = [1 0 1 0 1 0 0 0];
+% 
+% [desired.' crc.']
 
 
 end
