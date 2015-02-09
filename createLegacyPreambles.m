@@ -1,6 +1,11 @@
-function [preambles,pilots,hDataMod,hPreambleMod] = createLegacyPreambles()
+function [preambles,pilots,hDataMod,hPreambleMod] = createLegacyPreambles(numSymbols)
 
-NumDataSymbolsPerFrame = 1; % Not important ATM
+if nargin==0
+    NumDataSymbolsPerFrame = 1; % Not important ATM
+else
+    NumDataSymbolsPerFrame = numSymbols; % Not important ATM
+end
+
 
 %% Create Short Preamble
 ShortPreamble = [ 0 0  1+1i 0 0 0  -1-1i 0 0 0 ... % [-27:-17]
